@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PHARMA FUTURMAGICA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0; /* Elimina márgenes */
+        }
+        .main-section {
+            background-image: url('/img/fondonuevo.jpg'); /* Ruta de la imagen de fondo */
+            background-size: contain; /* Asegura que la imagen completa sea visible */
+            background-position: center 185px; /* Ajusta la posición vertical */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            background-attachment: fixed; /* Fija la imagen mientras haces scroll */
+            min-height: calc(100vh - 16rem); /* Altura mínima restando la altura del header */
+        }
+        .form-container {
+            position: relative;
+            top: -50px; /* Ajusta hacia arriba */
+            left: -400px; /* Ajusta hacia la izquierda */
+        }
+        .custom-button {
+            background-color: #0056b3; /* Azul oscuro */
+            color: white;
+        }
+        .custom-button:hover {
+            background-color: #003d82; /* Azul más oscuro en hover */
+        }
+        .custom-input {
+            border-color: white !important; /* Cambia el borde a color blanco */
+        }
+        .custom-input:focus {
+            outline: none;
+            border-color: white; /* Mantiene el borde blanco al enfocarse */
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.75); /* Efecto sombra blanca al enfoque */
+        }
+    </style>
+</head>
+<body class="text-white">
+<!-- Header Section -->
+<div
+        class="w-full h-64 bg-cover bg-center flex justify-between items-center px-8 py-4"
+        style="background-image: url('/img/headerlogin.jpg');"
+>
+
+</div>
+
+<!-- Main Section -->
+<div class="main-section flex items-center justify-end">
+    <!-- Login Form Section -->
+    <div class="form-container p-10 w-full max-w-md">
+        <h2 class="text-4xl font-semibold mb-4">Inicio de Sesión</h2> <!-- Tamaño de texto aumentado -->
+        <p class="mb-8 text-lg"> <!-- Tamaño de texto aumentado -->
+            Inicia sesión con tu cuenta de usuario en PHARMA FUTURMAGICA!
+        </p>
+
+        <!-- Mensaje de error -->
+        <div
+                th:if="${error}"
+                class="bg-red-500 text-white text-sm rounded-md p-3 mb-6"
+        >
+            <p th:text="${error}"></p>
+        </div>
+
+        <form th:action="@{/auth/login}" method="post">
+            <label for="email" class="block mb-3 text-base font-medium">Email</label>
+            <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="user@tuemail.com"
+                    class="w-full mb-5 px-5 py-3 rounded-lg border custom-input bg-gray-700 text-white text-base"
+                    required
+            />
+            <label
+                    for="password"
+                    class="block mb-3 text-base font-medium"
+            >Contraseña</label>
+            <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Introduce tu contraseña"
+                    class="w-full mb-8 px-5 py-3 rounded-lg border custom-input bg-gray-700 text-white text-base"
+                    required
+            />
+            <button
+                    type="submit"
+                    class="w-full custom-button py-3 px-5 rounded-lg font-semibold text-lg"
+            >
+                Inicia sesión
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
